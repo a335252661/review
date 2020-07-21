@@ -1,4 +1,4 @@
-package A1_多线程.A22synchronized同步语句块.A2271任意锁和this锁异步;
+package A1_多线程.A22synchronized同步语句块.A227任意锁和this锁异步;
 
 /**
  * @author 程刘德
