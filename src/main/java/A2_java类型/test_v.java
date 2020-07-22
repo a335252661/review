@@ -13,7 +13,7 @@ package A2_java类型;
 public class test_v {
 
     public static void main(String[] args) {
-        System.out.println(new test_v().fun(3L));
+//        System.out.println(new test_v().fun(3L));
 
         float aFloat=new test_v().fun(1.2f);
         float aDouble=new test_v().fun(22L);
