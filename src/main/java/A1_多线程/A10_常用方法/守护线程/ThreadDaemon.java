@@ -26,7 +26,7 @@ public class ThreadDaemon  extends Thread {
     public static void main(String[] args) {
         try {
             ThreadDaemon thread = new ThreadDaemon();
-//            thread.setDaemon(true);   // 则当前线程是main线程的守护线程  ，main线程结束 则Thread01线程也结束
+            thread.setDaemon(true);   // 则当前线程是main线程的守护线程  ，main线程结束 则Thread01线程也结束
             thread.start();
             Thread.sleep(5000);
             System.out.println("我离开thread对象也不再打印了，也就是停止了！");

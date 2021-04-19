@@ -19,6 +19,7 @@ public class Task {
         synchronized void otherMethod() {   // 同步方法将当前方法所在类的对象作为锁，都是一把锁
         System.out.println("------------------------run--otherMethod");
     }
+
     public void doLongTimeTask() {
         synchronized (this) {
             for (int i = 0; i < 10000; i++) {

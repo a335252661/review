@@ -46,6 +46,7 @@ public class Service {
     public void setUsernamePassword(String username, String password) {
         try {
             synchronized (anyString) {
+//            synchronized (new String()) {
                 System.out.println("线程名称为：" + Thread.currentThread().getName() + "在"
                         + System.currentTimeMillis() + "进入同步块");
                 usernameParam = username;

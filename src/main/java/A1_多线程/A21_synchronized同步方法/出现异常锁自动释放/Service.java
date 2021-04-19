@@ -36,13 +36,30 @@ public class Service {
     public static void main(String[] args) {
         try {
             Service service = new Service();
-            ThreadA a = new ThreadA(service);
-            a.setName("a");
+//            ThreadA a = new ThreadA(service);
+//            a.setName("a");
+//            a.start();
+//            Thread.sleep(500);
+//            ThreadB b = new ThreadB(service);
+//            b.setName("b");
+//            b.start();
+
+            Thread a = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    service.testMethod();
+                }
+            }, "a");
             a.start();
             Thread.sleep(500);
-            ThreadB b = new ThreadB(service);
-            b.setName("b");
-            b.start();
+
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    service.testMethod();
+                }
+            },"b").start();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

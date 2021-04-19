@@ -7,7 +7,8 @@ package A1_多线程.A10_常用方法.暂停线程;
  * @date 2020/7/16
  */
 public class ThreadSuspend02 {
-    synchronized public void printString() {
+//    synchronized public void printString() {
+     public void printString() {
         System.out.println("begin");
         if (Thread.currentThread().getName().equals("a")) {
             System.out.println("a线程永远 suspend了！");

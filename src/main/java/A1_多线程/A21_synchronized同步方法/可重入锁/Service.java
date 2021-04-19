@@ -18,4 +18,14 @@ public class Service {
     synchronized public void service3() {
         System.out.println("service3");
     }
+
+    public static void main(String[] args) {
+        Service service = new Service();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                service.service1();
+            }
+        },"A").start();
+    }
 }

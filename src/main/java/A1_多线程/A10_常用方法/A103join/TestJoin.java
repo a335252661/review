@@ -31,8 +31,11 @@ public class TestJoin {
 
         t1.start();
         System.out.println(t1.isAlive());
-        t1.join(); //是一个同步方法synchronized
+        t1.join(); //是一个同步方法synchronized， 会阻塞main线程 ，
         t2.start();
+
+//        t1.start();
+//        t2.start();
 
     }
 }
