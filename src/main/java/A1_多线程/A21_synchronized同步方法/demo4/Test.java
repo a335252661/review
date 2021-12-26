@@ -12,9 +12,9 @@ package A1_多线程.A21_synchronized同步方法.demo4;
 public class Test {
     public static void main(String[] args) {
         try {
-            PublicVar publicVarRef = new PublicVar();
+            PublicVar publicVarRef = new PublicVar(); // 默认是  A   AA
             ThreadA thread = new ThreadA(publicVarRef);
-            thread.start();
+            thread.start(); //  ("B",  设置完了时候睡眠  Thread.sleep(5000);    再设置密码  "BB");
             Thread.sleep(200);// 输出结果受此值大小影响
             publicVarRef.getValue();
         } catch (InterruptedException e) {

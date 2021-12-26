@@ -1,0 +1,59 @@
+1、创建线程池对象--executorService
+    主要就是通过构造方法赋值
+2、执行任务
+    executorService.execute(()->{ } ;
+
+        1、判断当前线程数量是否小于 核心线程数addWorker创建线程执行任务
+        if (workerCountOf(c) < corePoolSize) { //判断 workerCountOf(c) 当前线程数量是否小于 核心线程数
+            if (addWorker(command, true)) // addWorker创建线程执行任务
+                return;
+            c = ctl.get();
+        }
+            addWorker(command, true) 方法解析：
+                1、创建worker-一个worker就是一个工作线程。把任务传递进去
+                2、有个成员变量private final HashSet<Worker> workers = new HashSet<Worker>();
+                   把worker对象加入到集合workers ， 这个集合里面存放的就是所有的线程对象
+                    然后标记为添加成功 workerAdded = true;
+                 3、然后获取Worker 里面的thread对象，然后开启线程执行任务  t.start();
+
+                Worker 类解析
+                Worker 实现了Runnable 接口，肯定有个run方法，
+                Worker implements Runnable {
+                            final Thread thread; //线程对象 ， 因为传进来的是this，那么这个thread线程执行，执行的就是Worker类的run方法
+                            Runnable firstTask;
+                            Worker(Runnable firstTask) {
+                                setState(-1); // inhibit interrupts until runWorker
+                                this.firstTask = firstTask;
+                                this.thread = getThreadFactory().newThread(this); //通过线程工厂创建了一个线程，把当前类对象 Worker 传进去
+                            }
+
+                             public void run() {
+                                  runWorker(this);
+                             }
+                }
+
+            通过Worker 类解析，我们知道了，addWorker方法里面创建了Worker工作类对象，对象里面有线程成员变量，并且开启线程，就会执行Worker里面的run方法
+
+            Worker类的run方法-runWorker方法分析：
+                 final void runWorker(Worker w) {
+                     while (task != null || (task = getTask()) != null) { //是一个while循环
+
+                     }
+                 }
+                 Runnable task = w.firstTask;
+                1、如果 firstTask 任务对象不为空，就会执行 task.run(); -- 线程执行
+                2、task.run()执行完毕之后 ， 一直循环，就会从 getTask() 中获取任务，然后执行
+
+
+        2、将任务添加到workQueue队列。
+        if (isRunning(c) && workQueue.offer(command)) {// 如果不小于corePoolSize，则将任务添加到workQueue队列。
+            int recheck = ctl.get();
+            if (! isRunning(recheck) && remove(command))
+                reject(command);
+            else if (workerCountOf(recheck) == 0)
+                addWorker(null, false);
+        }
+
+        3、
+        else if (!addWorker(command, false)) //false ， 那么创建的就是临时线程，核心线程之外的线程
+            reject(command);

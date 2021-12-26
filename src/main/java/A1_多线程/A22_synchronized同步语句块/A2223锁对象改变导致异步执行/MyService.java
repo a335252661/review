@@ -50,7 +50,7 @@ public class MyService {
 
 
         t1.start();
-//        Thread.sleep(50);// 存在50ms
+        Thread.sleep(50);// 存在50ms
         t2.start();
 
         //当注释掉Thread.sleep(50) 之后，两个线程几乎同时运行，

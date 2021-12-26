@@ -15,8 +15,8 @@ public class HasSelfPrivateNum {
 
     private int mun2 = 0;
 
-//    public  void addI(String username) {
-    synchronized public void addI(String username) {   //加锁 变成线程安全
+    public  void addI(String username) {
+//    synchronized public void addI(String username) {   //加锁 变成线程安全
         try {
             int num = 0;
             if (username.equals("a")) {

@@ -20,6 +20,17 @@ public class QueueDemo {
 //        putAndTack();
 
 
+
+        // ArrayBlockingQueue
+        // DelayQueue
+        // SynchronousQueue
+        // PriorityBlockingQueue
+        // LinkedBlockingDeque
+        // LinkedBlockingQueue
+        // LinkedTransferQueue
+
+
+
         synchronousQueueFun();
 
 

@@ -1,5 +1,7 @@
 package A1_多线程.A23_volatile关键字.A231可见性的测试;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author 程刘德
  * @version 1.0
@@ -34,12 +36,16 @@ public class RunThread extends Thread{
     }
     public void setRunning(boolean isRunning) {
         this.isRunning = isRunning;
+        System.out.println("已经赋值为false");
     }
     @Override
     public void run() {
         System.out.println("进入run了");
         while (isRunning == true) {
-            //synchronized (new Object()){};  //当线程碰到synchronized 关键字的时候，会将公共堆栈的数据同步到当前线程堆栈
+//            synchronized (new Object()){};  //当线程碰到synchronized 关键字的时候，会将公共堆栈的数据同步到当前线程堆栈
+//            System.out.println("run printStringMethod threadName="
+//                    + Thread.currentThread().getName());
+           try { TimeUnit.SECONDS.sleep(1);  } catch (InterruptedException e) { e.printStackTrace(); }
         }
         System.out.println("线程被停止了！");
     }
@@ -51,7 +57,7 @@ public class RunThread extends Thread{
             thread.start();  //线程执行公共堆栈和线程私有堆栈isRunning = true
             Thread.sleep(1000);
             thread.setRunning(false);   //线程执行公共堆栈 isRunning 修改为false   ，线程私有堆栈依然是true，故线程被停止了！不会执行
-            System.out.println("已经赋值为false");
+
         } catch (InterruptedException e) {
 // TODO Auto-generated catch block
             e.printStackTrace();

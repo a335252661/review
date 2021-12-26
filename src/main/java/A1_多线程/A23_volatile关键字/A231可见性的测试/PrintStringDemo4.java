@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  * @Description TODO
  * @date 2020/7/22
  */
-public class PrintStringDemo2 implements Runnable {
+public class PrintStringDemo4 extends Thread {
     private boolean isContinuePrint = true;
     public boolean isContinuePrint() {
         return isContinuePrint;
@@ -47,8 +47,8 @@ public class PrintStringDemo2 implements Runnable {
     }
 
     public static void main(String[] args) {
-        PrintStringDemo2 printStringService = new PrintStringDemo2();
-        new Thread(printStringService).start();
+        PrintStringDemo4 printStringService = new PrintStringDemo4();
+        printStringService.start();
 
 
         try { TimeUnit.SECONDS.sleep(3);  } catch (InterruptedException e) { e.printStackTrace(); }

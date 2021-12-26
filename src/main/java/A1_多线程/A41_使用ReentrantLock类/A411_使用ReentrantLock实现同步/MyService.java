@@ -11,8 +11,16 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class MyService {
     private Lock lock = new ReentrantLock();
+//    private Lock lock = new ReentrantLock(true);
     public void testMethod() {
         lock.lock();
+
+        if(Thread.currentThread().getName().equals("T")){
+            while (true){
+
+            }
+        }
+
         for (int i = 0; i < 5; i++) {
             System.out.println("ThreadName=" + Thread.currentThread().getName()
                     + (" " + (i + 1)));
@@ -24,14 +32,29 @@ public class MyService {
 
         MyService myService = new MyService();
 
-        for(int i=0 ;i<5 ; i++ ){
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    myService.testMethod();
-                }
-            },"T"+i).start();
-        }
+//        for(int i=0 ;i<5 ; i++ ){
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    myService.testMethod();
+//                }
+//            },"T"+i).start();
+//        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                myService.testMethod();
+            }
+        },"T").start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                myService.testMethod();
+            }
+        },"T2").start();
+
     }
 
 }

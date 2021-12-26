@@ -46,7 +46,7 @@ public class MyObject {
     public static void main(String[] args) {
         //a线程调用a方法   b线程调用b方法
         MyObject object = new MyObject();
-        ThreadA a = new ThreadA(object); // object 是同一个对象 ， 
+        ThreadA a = new ThreadA(object); // object 是同一个对象 ， 调用了methodA 和方法 methodB
         a.setName("A");
         ThreadB b = new ThreadB(object); // object
         b.setName("B");
